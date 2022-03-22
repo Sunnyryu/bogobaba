@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1088097055210",
+    "project_id": "bogobaba-45446",
+    "storage_bucket": "bogobaba-45446.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1088097055210:android:5770a333bc98e5f3c80293",
+        "android_client_info": {
+          "package_name": "com.example.bogobaba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1088097055210-r37m60ltdoajt5kk3am9cks02het5taa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaPR1kAoYcxU01BClo79189XRQ2Z8-pNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1088097055210-r37m60ltdoajt5kk3am9cks02het5taa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
