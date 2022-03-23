@@ -112,31 +112,52 @@ class _ReviewPageState extends State<ReviewPage> {
 
                                 // 삭제 아이콘 버튼
                                 trailing: TextButton(
-                                  child: Text("리뷰작성",
-                                      style: TextStyle(
-                                          color: BogoColor.bogoWhite)),
+                                  child: Text(
+                                    "리뷰작성",
+                                    style:
+                                        TextStyle(color: BogoColor.bogoWhite),
+                                  ),
                                   onPressed: () {
                                     showDialog<String>(
                                       context: context,
                                       builder: (BuildContext context) =>
                                           AlertDialog(
-                                        title: Text(name),
-                                        content: Row(
-                                          children: [
-                                            Text("리뷰작성: "),
-                                            Expanded(
-                                              child: TextField(
-                                                maxLines: 10,
-                                                minLines: 1,
-                                                keyboardType:
-                                                    TextInputType.multiline,
-                                                controller: reviewController,
-                                                decoration: InputDecoration(
-                                                  hintText: "리뷰를 작성해주세요.",
+                                        title: Text(
+                                          name,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: BogoColor.bogoFirst,
+                                        content: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                "리뷰작성 ",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              Expanded(
+                                                child: TextField(
+                                                  maxLines: 20,
+                                                  minLines: 1,
+                                                  keyboardType:
+                                                      TextInputType.multiline,
+                                                  controller: reviewController,
+                                                  decoration: InputDecoration(
+                                                    hintText: "리뷰를 작성해주세요.",
+                                                    hintStyle: TextStyle(
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                  style: TextStyle(color: Colors.white,),
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                         actions: [
                                           TextButton(
@@ -144,7 +165,12 @@ class _ReviewPageState extends State<ReviewPage> {
                                               reviewController.clear();
                                               Navigator.pop(context, 'Cancel');
                                             },
-                                            child: const Text('취소'),
+                                            child: const Text(
+                                              '취소',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
                                           ),
                                           TextButton(
                                             onPressed: () {
@@ -160,7 +186,12 @@ class _ReviewPageState extends State<ReviewPage> {
                                               }
                                               Navigator.pop(context, 'OK');
                                             },
-                                            child: const Text('작성'),
+                                            child: const Text(
+                                              '작성',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
