@@ -141,7 +141,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                         actions: [
                                           TextButton(
                                             onPressed: () {
-                                              // testcontroller.clear();
+                                              reviewController.clear();
                                               Navigator.pop(context, 'Cancel');
                                             },
                                             child: const Text('취소'),
