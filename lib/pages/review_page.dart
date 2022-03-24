@@ -153,7 +153,9 @@ class _ReviewPageState extends State<ReviewPage> {
                                                       color: Colors.white,
                                                     ),
                                                   ),
-                                                  style: TextStyle(color: Colors.white,),
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
                                               ),
                                             ],
