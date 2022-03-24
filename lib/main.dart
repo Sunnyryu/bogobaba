@@ -18,6 +18,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => AuthService()),
         ChangeNotifierProvider(create: (context) => ReviewService()),
+        ChangeNotifierProvider(create: (context) => MovieService()),
       ],
       child: const MyApp(),
     ),
