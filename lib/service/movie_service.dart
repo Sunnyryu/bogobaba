@@ -1,13 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class MoviceService extends ChangeNotifier {
+class MovieService extends ChangeNotifier {
   final movieCollection = FirebaseFirestore.instance.collection('movie');
+  final reviewCollection = FirebaseFirestore.instance.collection('review');
 
   Future<QuerySnapshot> read(String name) async {
-    // 내 bucketList 가져오기
-    // throw UnimplementedError(); // return 값 미구현 에러
-    return movieCollection.where('name', isEqualTo: name).get();
+    return movieCollection
+        .orderBy('name')
+        .startAt([name]).endAt([name + '\uf8ff']).get();
+  }
+
+  Future<QuerySnapshot> readReview(String mid) async {
+    return reviewCollection.where('mid', isEqualTo: mid).get();
   }
 
   void create(String name, String genre, String description, String category,
@@ -26,9 +31,15 @@ class MoviceService extends ChangeNotifier {
     notifyListeners(); // 화면 갱신
   }
 
-  // void update(String docId, bool isDone) async {
+  void updateAddLike(String docId, dynamic likeList) async {
+    // bucket isDone 업데이트
+    await reviewCollection.doc(docId).update({'likeList': likeList});
+    notifyListeners(); // 화면 갱신
+  }
+
+  // void updateDeleteLike(String docId, bool likeList) async {
   //   // bucket isDone 업데이트
-  //   await movieCollection.doc(docId).update({'isDone': isDone});
+  //   await reviewCollection.doc(docId).update({'likeList': likeList});
   //   notifyListeners(); // 화면 갱신
   // }
 
