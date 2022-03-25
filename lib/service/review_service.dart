@@ -17,6 +17,10 @@ class ReviewService extends ChangeNotifier {
     return reviewCollection.where('uid', isEqualTo: uid).get();
   }
 
+  Future<QuerySnapshot> readMyLikeReview(String uid) async {
+    return reviewCollection.where('likeList', arrayContains: uid).get();
+  }
+
   void create(String uid, String content, String mid, String name) async {
     await reviewCollection.add({
       'uid': uid,

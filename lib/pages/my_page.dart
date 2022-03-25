@@ -84,43 +84,57 @@ class _MyPageState extends State<MyPage> with TickerProviderStateMixin {
                               review,
                               style: TextStyle(color: Colors.white),
                             ),
-                            trailing: IconButton(
+                            trailing: TextButton(
                               onPressed: () {
                                 setState(() {
                                   reviewService.delete(reviewId);
                                 });
                               },
-                              icon: Icon(Icons.remove),
-                              color: BogoColor.bogoWhite,
+                              child: Text(
+                                "삭제",
+                                style: TextStyle(color: BogoColor.bogoWhite),
+                              ),
                             ),
                           );
                         });
                   }),
-              ListView.builder(
-                  // itemCount: documents.length,
-                  itemBuilder: (context, index) {
-                // final doc = documents[index];
-                // String movieName = doc.get("name");
-                // String review = doc.get("content");
-                // String reviewId = doc.id;
-                return ListTile(
-                  title: Text(
-                    'title',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  subtitle: Text(
-                    'subtitle',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  trailing: IconButton(
-                    onPressed: () {
-                      print('delete');
-                    },
-                    icon: Icon(Icons.favorite),
-                    color: Colors.pink,
-                  ),
-                );
-              }),
+              FutureBuilder<QuerySnapshot>(
+                  future: reviewService.readMyLikeReview(user.uid),
+                  builder: (context, snapshot) {
+                    final documents = snapshot.data?.docs ?? [];
+
+                    return ListView.builder(
+                        itemCount: documents.length,
+                        itemBuilder: (context, index) {
+                          final doc = documents[index];
+
+                          String movieName = doc.get("name");
+                          String review = doc.get("content");
+                          String reviewId = doc.id;
+
+                          return ListTile(
+                            title: Text(
+                              movieName,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            subtitle: Text(
+                              review,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            trailing: TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  reviewService.delete(reviewId);
+                                });
+                              },
+                              child: Text(
+                                "좋아요 취소",
+                                style: TextStyle(color: BogoColor.bogoWhite),
+                              ),
+                            ),
+                          );
+                        });
+                  }),
             ]),
           ),
         );

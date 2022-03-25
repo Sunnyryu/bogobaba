@@ -201,23 +201,23 @@ class _WatchPageState extends State<WatchPage> {
                                             Spacer(),
                                             IconButton(
                                               iconSize: 11.0,
-                                              color: likeList.contains(uid)
+                                              color: likeList.contains(myId)
                                                   ? BogoColor.bogoRed
                                                   : BogoColor.bogoWhite,
-                                              icon: likeList.contains(uid)
+                                              icon: likeList.contains(myId)
                                                   ? Icon(Icons.favorite)
                                                   : Icon(Icons.favorite_border),
                                               onPressed: () {
                                                 setState(() {
-                                                  if (likeList.contains(uid) ==
+                                                  if (likeList.contains(myId) ==
                                                       true) {
-                                                    likeList.remove(uid);
+                                                    likeList.remove(myId);
                                                     movieService.updateAddLike(
                                                         doc.id, likeList);
                                                   } else if (likeList
-                                                          .contains(uid) ==
+                                                          .contains(myId) ==
                                                       false) {
-                                                    likeList.add(uid);
+                                                    likeList.add(myId);
                                                     movieService.updateAddLike(
                                                         doc.id, likeList);
                                                   }
