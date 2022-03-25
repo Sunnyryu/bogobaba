@@ -33,6 +33,6 @@ class ReviewService extends ChangeNotifier {
   }
 
   void delete(String docId) async {
-    // bucket 삭제
+    await reviewCollection.doc(docId).delete();
   }
 }

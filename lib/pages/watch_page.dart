@@ -45,9 +45,10 @@ class _WatchPageState extends State<WatchPage> {
             SliverAppBar(
               pinned: true,
               // snap: false,
-              floating: true,
+              floating: false,
               // stretch: true,
-              expandedHeight: 250,
+
+              expandedHeight: 300,
               flexibleSpace: FlexibleSpaceBar(
                 background: Stack(
                   children: [
@@ -78,7 +79,7 @@ class _WatchPageState extends State<WatchPage> {
                                 color: BogoColor.bogoGray, fontSize: 16),
                           ),
                           Text(
-                            widget.genre.join(","),
+                            widget.genre.join(", "),
                             style: TextStyle(
                                 color: BogoColor.bogoGray, fontSize: 16),
                           ),
@@ -89,46 +90,38 @@ class _WatchPageState extends State<WatchPage> {
                 ),
               ),
             ),
-            SliverFillRemaining(
-              // fillOverscroll: true,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "작품정보",
-                      style:
-                          TextStyle(color: BogoColor.bogoWhite, fontSize: 20),
-                    ),
-                    SizedBox(height: 6),
-                    Text(
-                      widget.description,
-                      style:
-                          TextStyle(color: BogoColor.bogoWhite, fontSize: 16),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Divider(),
-                    Expanded(
-                      child: FutureBuilder<QuerySnapshot>(
-                        future: movieService.readReview(widget.mid),
-                        builder: (context, snapshot) {
-                          final docs = snapshot.data?.docs ?? [];
-
-                          return ListView.builder(
-                            itemCount:
-                                docs.length > 3 ? _listNumber : docs.length + 1,
-                            itemBuilder: (context, index) {
-                              if (index == 0) {
-                                return Row(
+            FutureBuilder<QuerySnapshot>(
+                future: movieService.readReview(widget.mid),
+                builder: (context, snapshot) {
+                  final docs = snapshot.data?.docs ?? [];
+                  return SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        if (index == 0) {
+                          return Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "작품정보",
+                                  style: TextStyle(
+                                      color: BogoColor.bogoWhite, fontSize: 20),
+                                ),
+                                SizedBox(height: 6),
+                                Text(
+                                  widget.description,
+                                  style: TextStyle(
+                                      color: BogoColor.bogoWhite, fontSize: 16),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Divider(),
+                                Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
@@ -169,100 +162,98 @@ class _WatchPageState extends State<WatchPage> {
                                       height: 10,
                                     ),
                                   ],
-                                );
-                              } else {
-                                final doc = docs[index - 1];
-
-                                String myId = user.uid;
-                                String uid = doc.get('uid');
-                                String content = doc.get('content');
-
-                                List likeList = doc.get('likeList');
-
-                                return Card(
-                                  margin: EdgeInsets.only(bottom: 15),
-                                  color: BogoColor.bogoDarkGray,
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.only(top: 3, left: 10),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        SizedBox(
-                                          height: 18.0,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                uid.substring(0, 4),
-                                                style: TextStyle(
-                                                    color: BogoColor.bogoWhite,
-                                                    fontSize: 12),
-                                              ),
-                                              Spacer(),
-                                              IconButton(
-                                                iconSize: 15.0,
-                                                color: likeList.contains(uid)
-                                                    ? BogoColor.bogoRed
-                                                    : BogoColor.bogoWhite,
-                                                icon: likeList.contains(uid)
-                                                    ? Icon(Icons.favorite)
-                                                    : Icon(
-                                                        Icons.favorite_border),
-                                                onPressed: () {
-                                                  setState(() {
-                                                    if (likeList
-                                                            .contains(uid) ==
-                                                        true) {
-                                                      likeList.remove(uid);
-                                                      movieService
-                                                          .updateAddLike(
-                                                              doc.id, likeList);
-                                                    } else if (likeList
-                                                            .contains(uid) ==
-                                                        false) {
-                                                      likeList.add(uid);
-                                                      movieService
-                                                          .updateAddLike(
-                                                              doc.id, likeList);
-                                                    }
-                                                  });
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        SizedBox(
-                                          width: double.infinity,
-                                          height: 30,
-                                          child: Text(
-                                            content,
-                                            style: TextStyle(
-                                              color: BogoColor.bogoWhite,
-                                              fontSize: 15,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }
-                            },
+                                ),
+                              ],
+                            ),
                           );
-                        },
-                      ),
+                        } else {
+                          final doc = docs[index - 1];
+
+                          String myId = user.uid;
+                          String uid = doc.get('uid');
+                          String content = doc.get('content');
+
+                          List likeList = doc.get('likeList');
+                          return Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Card(
+                              margin: EdgeInsets.only(bottom: 15),
+                              color: BogoColor.bogoDarkGray,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 3, left: 10),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 18.0,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              uid.substring(0, 4),
+                                              style: TextStyle(
+                                                  color: BogoColor.bogoWhite,
+                                                  fontSize: 11),
+                                            ),
+                                            Spacer(),
+                                            IconButton(
+                                              iconSize: 11.0,
+                                              color: likeList.contains(uid)
+                                                  ? BogoColor.bogoRed
+                                                  : BogoColor.bogoWhite,
+                                              icon: likeList.contains(uid)
+                                                  ? Icon(Icons.favorite)
+                                                  : Icon(Icons.favorite_border),
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (likeList.contains(uid) ==
+                                                      true) {
+                                                    likeList.remove(uid);
+                                                    movieService.updateAddLike(
+                                                        doc.id, likeList);
+                                                  } else if (likeList
+                                                          .contains(uid) ==
+                                                      false) {
+                                                    likeList.add(uid);
+                                                    movieService.updateAddLike(
+                                                        doc.id, likeList);
+                                                  }
+                                                });
+                                              },
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      SizedBox(
+                                        width: double.infinity,
+                                        height: 60,
+                                        child: Text(
+                                          content,
+                                          style: TextStyle(
+                                            color: BogoColor.bogoWhite,
+                                            fontSize: 13,
+                                          ),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ]),
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                      childCount:
+                          docs.length > 4 ? _listNumber : docs.length + 1,
                     ),
-                  ],
-                ),
-              ),
-            ),
+                  );
+                })
           ],
         ),
       );

@@ -152,8 +152,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               },
                                               contentPadding: EdgeInsets.only(
                                                   top: 20, left: 10, right: 10),
-                                              leading: Image.network(imgLink,
-                                                  width: 70, fit: BoxFit.fill),
+                                              leading: SizedBox(
+                                                width: 100,
+                                                child: Image.network(imgLink,
+                                                    fit: BoxFit.fill),
+                                              ),
                                               title: Text(
                                                 name,
                                                 style: TextStyle(
@@ -169,8 +172,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               ),
                             )
                           : Center(
-                              child: Text("123"),
-                            )
+                              heightFactor: 10.0,
+                              child: Text(
+                                "검색을 해주세요",
+                                style: TextStyle(
+                                    color: BogoColor.bogoWhite, fontSize: 18),
+                              ),
+                            ),
                     ],
                   ),
                   Column(
@@ -237,8 +245,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               ),
                             )
                           : Center(
-                              child: Text("123"),
-                            )
+                              heightFactor: 10.0,
+                              child: Text(
+                                "검색을 해주세요",
+                                style: TextStyle(
+                                    color: BogoColor.bogoWhite, fontSize: 18),
+                              ),
+                            ),
                     ],
                   ),
                   Column(
@@ -305,8 +318,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               ),
                             )
                           : Center(
-                              child: Text("123"),
-                            )
+                              heightFactor: 10.0,
+                              child: Text(
+                                "검색을 해주세요",
+                                style: TextStyle(
+                                    color: BogoColor.bogoWhite, fontSize: 18),
+                              ),
+                            ),
                     ],
                   ),
                 ],

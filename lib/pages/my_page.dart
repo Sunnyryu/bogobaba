@@ -74,16 +74,26 @@ class _MyPageState extends State<MyPage> with TickerProviderStateMixin {
                           final doc = documents[index];
                           String movieName = doc.get("name");
                           String review = doc.get("content");
+                          String reviewId = doc.id;
                           return ListTile(
-                              title: Text(
-                                movieName,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              subtitle: Text(
-                                review,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              trailing: Icon(Icons.add, color: Colors.white));
+                            title: Text(
+                              movieName,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            subtitle: Text(
+                              review,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            trailing: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  reviewService.delete(reviewId);
+                                });
+                              },
+                              icon: Icon(Icons.remove),
+                              color: BogoColor.bogoWhite,
+                            ),
+                          );
                         });
                   }),
               Center(

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:bogobaba/pages/test_page.dart';
 import 'package:bogobaba/service/auth_service.dart';
 // import 'package:bogobaba/main.dart';
 import 'package:bogobaba/pages/main_page.dart';
@@ -102,6 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                       password: passwordController.text,
                       onSuccess: () {
                         // 로그인 성공
+                        print(emailController.text);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text("로그인 성공"),
@@ -110,10 +112,17 @@ class _LoginPageState extends State<LoginPage> {
                         );
 
                         // HomePage로 이동
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => MainPage()),
-                        );
+                        if (emailController.text == "test@a.com") {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => TestPage()),
+                          );
+                        } else {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => MainPage()),
+                          );
+                        }
                       },
                       onError: (err) {
                         // 에러 발생
