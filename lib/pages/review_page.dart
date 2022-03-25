@@ -130,7 +130,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                         ),
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: BogoColor.bogoFirst,
-                                        content: Container(
+                                        content: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width,
                                           child: Column(
