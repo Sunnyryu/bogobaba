@@ -11,6 +11,12 @@ class ReviewService extends ChangeNotifier {
     return movieCollection.where('name', isEqualTo: name).get();
   }
 
+  Future<QuerySnapshot> readMyReview(String uid) async {
+    // 내 reviewList 가져오기
+
+    return reviewCollection.where('uid', isEqualTo: uid).get();
+  }
+
   void create(String uid, String content, String mid, String name) async {
     await reviewCollection.add({
       'uid': uid,

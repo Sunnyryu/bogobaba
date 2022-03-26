@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1088097055210-6gll9psu5bgga3hv75g89upom4aalirs.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1088097055210-6gll9psu5bgga3hv75g89upom4aalirs</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBeJ3FlqYeIpTZuSnlk2aD5HW1Jh_RD0wU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1088097055210</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.bogobaba</string>
+	<key>PROJECT_ID</key>
+	<string>bogobaba-45446</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bogobaba-45446.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1088097055210:ios:b12fd14fd13c448bc80293</string>
+</dict>
+</plist>

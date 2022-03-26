@@ -134,3 +134,45 @@ class _BogoAppbarState extends State<BogoAppbar> {
     );
   }
 }
+
+class mypageAppbar extends StatelessWidget {
+  const mypageAppbar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      // centerTitle: true,
+      leading: null,
+      elevation: 0,
+      title: Text(
+        "Bogobaba",
+        style:
+            TextStyle(color: BogoColor.bogoWhite, fontWeight: FontWeight.bold),
+      ),
+      actions: [
+        TextButton(
+          child: Text(
+            "로그아웃",
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          onPressed: () {
+            // 로그아웃
+          },
+        ),
+      ],
+      bottom: const TabBar(
+        isScrollable: false,
+        indicatorWeight: 4,
+        tabs: [
+          Tab(text: "내가 쓴 리뷰"),
+          Tab(text: "좋아요 누른 리뷰"),
+        ],
+        indicatorColor: BogoColor.bogoWhite,
+      ),
+    );
+  }
+}
