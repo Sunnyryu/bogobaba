@@ -96,11 +96,31 @@ class _MyPageState extends State<MyPage> with TickerProviderStateMixin {
                           );
                         });
                   }),
-              Center(
-                  child: Text(
-                'test2',
-                style: TextStyle(color: Colors.white),
-              )),
+              ListView.builder(
+                  // itemCount: documents.length,
+                  itemBuilder: (context, index) {
+                // final doc = documents[index];
+                // String movieName = doc.get("name");
+                // String review = doc.get("content");
+                // String reviewId = doc.id;
+                return ListTile(
+                  title: Text(
+                    'title',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  subtitle: Text(
+                    'subtitle',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  trailing: IconButton(
+                    onPressed: () {
+                      print('delete');
+                    },
+                    icon: Icon(Icons.favorite),
+                    color: Colors.pink,
+                  ),
+                );
+              }),
             ]),
           ),
         );
